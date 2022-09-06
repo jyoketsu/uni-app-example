@@ -13,6 +13,24 @@
         "topWindow": false,
         "leftWindow": false
       }
+    },
+    {
+      "path": "pages/page2/index",
+      "style": {
+        "navigationBarTitleText": "page2"
+      }
+    },
+    {
+      "path": "pages/page3/index",
+      "style": {
+        "navigationBarTitleText": "page3"
+      }
+    },
+    {
+      "path": "pages/page4/index",
+      "style": {
+        "navigationBarTitleText": "page4"
+      }
     }
   ],
   "globalStyle": {
@@ -25,13 +43,25 @@
   "topWindow": {
     "path": "responsive/top-window.vue",
     "style": {
-      "height": "44px"
+      "height": "62px"
+    },
+    "matchMedia": {
+      "minWidth": 1000
     }
   },
   "leftWindow": {
     "path": "responsive/left-window.vue",
     "style": {
       "width": "300px"
+    },
+    "matchMedia": {
+      "minWidth": 1000
+    }
+  },
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
     }
   }
 }

@@ -4,7 +4,13 @@ import { useStore } from "./store";
 const store = useStore();
 onLaunch(() => {
   console.log("App Launch");
-  store.dispatch("auth/getUserByToken", "aaaa");
+
+  const token = uni.getStorageSync("auth_token");
+  if (token) {
+    store.dispatch("auth/getUserByToken", token);
+  } else {
+    uni.navigateTo({ url: "/pages/login/index" });
+  }
 });
 onShow(() => {
   console.log("App Show");

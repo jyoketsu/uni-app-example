@@ -4,16 +4,14 @@
     <view class="text-area">
       <text class="title">{{ title }}</text>
     </view>
-    <button @click="handleLogin">按钮</button>
   </view>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
+import { useCurrentRoute } from "../../composables/currentRoute";
 const title = ref("Hello");
-const handleLogin = () => {
-  uni.navigateTo({ url: "/pages/login/index" });
-};
+useCurrentRoute();
 </script>
 
 <style>
