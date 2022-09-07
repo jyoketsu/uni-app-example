@@ -1,7 +1,7 @@
 <template>
   <view class="content">
     <view class="text-area">
-      <text class="title">页面3</text>
+      <text class="title">{{ $t("pages.page3") }}</text>
     </view>
   </view>
 </template>

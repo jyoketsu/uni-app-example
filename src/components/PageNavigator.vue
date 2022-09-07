@@ -6,7 +6,7 @@
           currentRoutePath === '/pages/index/index' ? 'active' : ''
         }`"
       >
-        <text>页面1</text>
+        <text>{{ $t("pages.page1") }}</text>
       </view>
     </navigator>
     <navigator url="/pages/page2/index" hover-class="navigator-hover">
@@ -15,7 +15,7 @@
           currentRoutePath === '/pages/page2/index' ? 'active' : ''
         }`"
       >
-        <text>页面2</text>
+        <text>{{ $t("pages.page2") }}</text>
       </view>
     </navigator>
     <navigator url="/pages/page3/index" hover-class="navigator-hover">
@@ -24,7 +24,7 @@
           currentRoutePath === '/pages/page3/index' ? 'active' : ''
         }`"
       >
-        <text>页面3</text>
+        <text>{{ $t("pages.page3") }}</text>
       </view>
     </navigator>
     <navigator url="/pages/page4/index" hover-class="navigator-hover">
@@ -33,7 +33,7 @@
           currentRoutePath === '/pages/page4/index' ? 'active' : ''
         }`"
       >
-        <text>页面4</text>
+        <text>{{ $t("pages.page4") }}</text>
       </view>
     </navigator>
   </view>

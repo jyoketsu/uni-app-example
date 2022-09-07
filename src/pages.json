@@ -15,6 +15,14 @@
       }
     },
     {
+      "path": "pages/account/index",
+      "style": {
+        "navigationBarTitleText": "account",
+        "topWindow": false,
+        "leftWindow": false
+      }
+    },
+    {
       "path": "pages/page2/index",
       "style": {
         "navigationBarTitleText": "page2"
@@ -46,7 +54,7 @@
       "height": "62px"
     },
     "matchMedia": {
-      "minWidth": 1000
+      "minWidth": 0
     }
   },
   "leftWindow": {

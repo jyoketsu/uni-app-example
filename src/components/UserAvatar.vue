@@ -17,14 +17,17 @@ const props = defineProps<{
 const handleClick = () => {
   if (!props.userKey) {
     uni.navigateTo({ url: "/pages/login/index" });
+  } else {
+    uni.navigateTo({ url: "/pages/account/index" });
   }
 };
 </script>
 <style scoped>
 .avatar {
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
+  border-radius: 50%;
 }
 </style>

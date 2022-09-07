@@ -1,33 +1,41 @@
 <template>
   <view class="login">
     <view class="logo" />
-    <button @click="handleLogin">登录</button>
-    <web-view
-      :src="url"
-      v-if="showLogin"
-      @onPostMessage="handleMessage"
-    ></web-view>
+    <uni-forms :modelValue="formData" class="login-form">
+      <uni-forms-item :label="$t('login.mobile')" name="mobile">
+        <uni-easyinput
+          type="number"
+          v-model="formData.mobile"
+          :placeholder="$t('login.mobilePlaceholder')"
+        />
+      </uni-forms-item>
+      <uni-forms-item :label="$t('login.password')" name="password">
+        <uni-easyinput
+          type="password"
+          v-model="formData.password"
+          :placeholder="$t('login.passwordPlaceholder')"
+        />
+      </uni-forms-item>
+    </uni-forms>
+    <button @click="submitForm">{{ $t("login.login") }}</button>
   </view>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-const redirect = "/pages/login/index";
-// const redirect = "https://psnine.com";
-const logo = "https://notes.qingtime.cn/icons/logo2.svg";
-const APP = import.meta.env.VITE_APP;
-const APP_HIGH = import.meta.env.VITE_APP_HIGH;
-const url = `https://account.qingtime.cn?app=${APP}&apphigh=${APP_HIGH}&logo=${logo}&redirect=${redirect}`;
+import { computed, ref, watch, watchEffect } from "vue";
+import { useStore } from "../../store";
+const store = useStore();
+const user = computed(() => store.state.auth.user);
+const formData = ref({ mobile: undefined, password: "" });
 
-const showLogin = ref(false);
+watch(user, (newVal, oldVal) => {
+  if (newVal && !oldVal) {
+    uni.navigateTo({ url: "/pages/index/index" });
+  }
+});
 
-const handleLogin = () => {
-  showLogin.value = true;
-};
-
-const handleMessage = (e: any) => {
-  console.log("---onPostMessage---", e);
-  alert("aaa");
+const submitForm = () => {
+  store.dispatch("auth/login", formData.value);
 };
 </script>
 
@@ -47,5 +55,9 @@ const handleMessage = (e: any) => {
   background-image: url("/static/logo.png");
   background-size: cover;
   background-position: center;
+}
+.login-form {
+  width: 340px;
+  margin-bottom: 25px;
 }
 </style>

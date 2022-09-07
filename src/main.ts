@@ -1,9 +1,10 @@
 import { createSSRApp } from "vue";
 import App from "./App.vue";
 import { store, key } from "./store";
+import i18n from "./locales";
 export function createApp() {
   const app = createSSRApp(App);
-  app.use(store, key);
+  app.use(store, key).use(i18n);
   return {
     app,
   };

@@ -1,4 +1,5 @@
 import { ActionTree, MutationTree } from "vuex";
+import { getDefaultLanguage } from "../../utils/util";
 import { CommonState } from "../types/CommonState";
 import { RootState } from "../types/RootState";
 
@@ -7,6 +8,7 @@ const state: CommonState = {
   // dark: uni.getStorageSync("DARK") ? true : false,
   dark: false,
   route: null,
+  locale: getDefaultLanguage(),
 };
 
 const mutations: MutationTree<CommonState> = {
@@ -29,6 +31,9 @@ const mutations: MutationTree<CommonState> = {
   setRoute(state, data) {
     state.route = data;
   },
+  setLocale(state, data) {
+    state.locale = data;
+  },
 };
 
 const actions: ActionTree<CommonState, RootState> = {
@@ -41,6 +46,10 @@ const actions: ActionTree<CommonState, RootState> = {
       path: curRoute.$page.path,
       options: curRoute.$page.options,
     });
+  },
+  changeLocale({ commit }, locale) {
+    uni.setStorage({ key: "LOCALE", data: locale });
+    commit("setLocale", locale);
   },
 };
 

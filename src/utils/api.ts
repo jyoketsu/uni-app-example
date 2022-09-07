@@ -1,8 +1,13 @@
+import { getDeviceType } from "./util";
+
 const AUTH_URL = import.meta.env.VITE_AUTH_URL;
 const API_URL = import.meta.env.VITE_API_URL;
 
-let token = localStorage.getItem("auth_token") || "";
-const locale = localStorage.getItem("LOCALE") || "zh-CN";
+const APP = import.meta.env.VITE_APP;
+const APP_HIGH = import.meta.env.VITE_APP_HIGH;
+
+let token = "";
+const locale = "zh-CN";
 
 const common = {
   request(
@@ -32,6 +37,19 @@ const common = {
 };
 
 const auth = {
+  login(mobile: number, password: string) {
+    const deviceType = getDeviceType();
+    return common.request("GET", `${AUTH_URL}/account`, {
+      mobileArea: "+86",
+      mobile: mobile,
+      password: password,
+      service: 3,
+      app: APP,
+      appHigh: APP_HIGH,
+      deviceType: deviceType,
+      deviceModel: deviceType,
+    });
+  },
   loginByToken(token: string) {
     return common.request("GET", `${API_URL}/user`, { token });
   },
